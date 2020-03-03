@@ -23,7 +23,7 @@ data:
     #!/usr/bin/env bash
     set -eu
     /opt/jboss/keycloak/bin/jboss-cli.sh --file=/scripts/keycloak.cli
-    exec /opt/jboss/docker-entrypoint.sh -b 0.0.0.0
+    exec /opt/jboss/tools/docker-entrypoint.sh -b 0.0.0.0
     exit "$?"
 
 

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: keycloak
-        image: jboss/keycloak:3.4.3.Final
+        image: jboss/keycloak:8.0.2
         imagePullPolicy: IfNotPresent
         command: [ "/scripts/keycloak.sh" ]
         env:
@@ -32,16 +32,18 @@ spec:
             secretKeyRef:
               key: password
               name: keycloak-admin-user
-        - name: POSTGRES_PORT_5432_TCP_ADDR
+        - name: DB_VENDOR
+          value: postgres
+        - name: DB_ADDR
           value: postgresql
-        - name: POSTGRES_USER
+        - name: DB_USER
           value: keycloak
-        - name: POSTGRES_PASSWORD
+        - name: DB_PASSWORD
           valueFrom:
             secretKeyRef:
               key: postgres-password
               name: postgresql
-        - name: POSTGRES_DATABASE
+        - name: DB_DATABASE
           value: keycloak
         livenessProbe:
           failureThreshold: 3

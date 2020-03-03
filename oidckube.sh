@@ -47,7 +47,7 @@ init_pki() {
 
 init_minikube() {
   echo "[$(date)][INFO] Initializing minikube."
-  minikube start
+  minikube start --cpus 6 --memory 20000
   minikube addons enable ingress
   inject_keycloak_certs
   init_keycloak
@@ -76,7 +76,7 @@ init_keycloak() {
 }
 
 start_minikube() {
-  VBoxManage modifyvm minikube --natdnshostresolver1 on
+  # VBoxManage modifyvm minikube --natdnshostresolver1 on
   minikube start \
     --extra-config=kubelet.serialize-image-pulls=false \
     --extra-config=apiserver.oidc-issuer-url=https://$KEYCLOAK_ADDRESS/auth/realms/$KEYCLOAK_AUTH_REALM \
