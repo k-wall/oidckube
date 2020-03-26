@@ -77,7 +77,7 @@ init_keycloak() {
 
 start_minikube() {
   # VBoxManage modifyvm minikube --natdnshostresolver1 on
-  minikube start
+  minikube start \
     --extra-config=kubelet.serialize-image-pulls=false \
     --extra-config=apiserver.oidc-issuer-url=https://$KEYCLOAK_ADDRESS/auth/realms/$KEYCLOAK_AUTH_REALM \
     --extra-config=apiserver.oidc-client-id=$KEYCLOAK_CLIENT_ID \
